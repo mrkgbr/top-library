@@ -104,7 +104,7 @@ addBtn.addEventListener(
   false
 );
 
-// Create cards for books already in the library
+// Create cards for books already in the library on page load
 myLibrary.forEach((book) => {
   const newBook = new Book(book);
   newBook.title = book.title;
@@ -112,5 +112,4 @@ myLibrary.forEach((book) => {
   newBook.pages = book.pages;
   newBook.read = book.read;
   newBook.createCard();
-  console.log(newBook);
 });
