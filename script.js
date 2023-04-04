@@ -35,7 +35,7 @@ function Book(title, author, pages, read) {
 }
 
 function createBookCard(book) {
-  // do stuff here
+  // create book card
   const container = document.querySelector("#container");
   const card = document.createElement("div");
   const title = document.createElement("h1");
@@ -51,14 +51,11 @@ function createBookCard(book) {
   delBtn.textContent = "Delete";
   delBtn.setAttribute("type", "button");
   delBtn.addEventListener("click", () => {
+    // add delete on click
     const index = myLibrary.indexOf(book);
     console.log(index);
     myLibrary.splice(index, 1);
     card.remove();
-    // container.innerHTML = "";
-    // myLibrary.forEach((remainingBooks) => {
-    //   createBookCard(remainingBooks);
-    // });
   });
   container.appendChild(card);
   card.appendChild(title);
@@ -69,21 +66,39 @@ function createBookCard(book) {
 }
 
 function addBookToLibrary(title, author, pages, read) {
-  // do stuff here
+  // add new book to the library and call create card
   const newBook = new Book(title, author, pages, read);
   myLibrary.push(newBook);
   createBookCard(newBook);
 }
 
-myLibrary.forEach((book) => {
-  createBookCard(book);
-});
-
+// Add new book function
 const addBtn = document.getElementById("add");
 addBtn.addEventListener(
   "click",
-  () => {
-    addBookToLibrary("One", "Two", 333, true);
+  (e) => {
+    // get data from form, empty the form fields
+    // check title in library and calls add book function if does not exist
+    e.preventDefault();
+    const form = document.getElementById("form");
+    const newTitle = form.title.value;
+    form.title.value = "";
+    const newAuthor = form.author.value;
+    form.author.value = "";
+    const newPages = form.pages.value;
+    form.pages.value = "";
+
+    const result = myLibrary.filter((check) => check.title === newTitle);
+    if (result.length === 0) {
+      addBookToLibrary(newTitle, newAuthor, newPages, true);
+    } else {
+      alert("Book already in the library");
+    }
   },
   false
 );
+
+// Create cards for books already in the library
+myLibrary.forEach((book) => {
+  createBookCard(book);
+});
