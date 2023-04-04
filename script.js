@@ -82,17 +82,20 @@ addBtn.addEventListener(
     e.preventDefault();
     const form = document.getElementById("form");
     const newTitle = form.title.value;
-    form.title.value = "";
     const newAuthor = form.author.value;
-    form.author.value = "";
     const newPages = form.pages.value;
-    form.pages.value = "";
-
-    const result = myLibrary.filter((check) => check.title === newTitle);
-    if (result.length === 0) {
-      addBookToLibrary(newTitle, newAuthor, newPages, true);
+    if (!newTitle || !newAuthor || !newPages) {
+      alert("Fill all fields please");
     } else {
-      alert("Book already in the library");
+      form.title.value = "";
+      form.author.value = "";
+      form.pages.value = "";
+      const result = myLibrary.filter((check) => check.title === newTitle);
+      if (result.length === 0) {
+        addBookToLibrary(newTitle, newAuthor, newPages, true);
+      } else {
+        alert("Book already in the library");
+      }
     }
   },
   false
