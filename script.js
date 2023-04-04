@@ -52,7 +52,6 @@ function Book() {
     delBtn.addEventListener("click", () => {
       // add delete on click
       const index = myLibrary.indexOf(this);
-      console.log(index);
       myLibrary.splice(index, 1);
       card.remove();
     });
@@ -86,11 +85,11 @@ addBtn.addEventListener(
     if (!newTitle || !newAuthor || !newPages) {
       alert("Fill all fields please");
     } else {
-      form.title.value = "";
-      form.author.value = "";
-      form.pages.value = "";
       const result = myLibrary.filter((check) => check.title === newTitle);
       if (result.length === 0) {
+        form.title.value = "";
+        form.author.value = "";
+        form.pages.value = "";
         const newBook = new Book();
         newBook.title = newTitle;
         newBook.author = newAuthor;
