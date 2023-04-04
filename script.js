@@ -26,50 +26,49 @@ const myLibrary = [
   },
 ];
 
-function Book(title, author, pages, read) {
+function Book() {
   // the constructor...
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-}
+  this.title = undefined;
+  this.author = undefined;
+  this.pages = undefined;
+  this.read = undefined;
 
-function createBookCard(book) {
-  // create book card
-  const container = document.querySelector("#container");
-  const card = document.createElement("div");
-  const title = document.createElement("h1");
-  const author = document.createElement("h2");
-  const pages = document.createElement("p");
-  const read = document.createElement("p");
-  const delBtn = document.createElement("button");
-  card.classList.add("card");
-  title.textContent = book.title;
-  author.textContent = book.author;
-  pages.textContent = book.pages;
-  read.textContent = book.read;
-  delBtn.textContent = "Delete";
-  delBtn.setAttribute("type", "button");
-  delBtn.addEventListener("click", () => {
-    // add delete on click
-    const index = myLibrary.indexOf(book);
-    console.log(index);
-    myLibrary.splice(index, 1);
-    card.remove();
-  });
-  container.appendChild(card);
-  card.appendChild(title);
-  card.appendChild(author);
-  card.appendChild(pages);
-  card.appendChild(read);
-  card.appendChild(delBtn);
-}
+  this.createCard = () => {
+    // create book card
+    const container = document.querySelector("#container");
+    const card = document.createElement("div");
+    const title = document.createElement("h1");
+    const author = document.createElement("h2");
+    const pages = document.createElement("p");
+    const read = document.createElement("p");
+    const delBtn = document.createElement("button");
+    card.classList.add("card");
+    title.textContent = this.title;
+    author.textContent = this.author;
+    pages.textContent = this.pages;
+    read.textContent = this.read;
+    delBtn.textContent = "Delete";
+    delBtn.setAttribute("type", "button");
+    delBtn.addEventListener("click", () => {
+      // add delete on click
+      const index = myLibrary.indexOf(this);
+      console.log(index);
+      myLibrary.splice(index, 1);
+      card.remove();
+    });
+    container.appendChild(card);
+    card.appendChild(title);
+    card.appendChild(author);
+    card.appendChild(pages);
+    card.appendChild(read);
+    card.appendChild(delBtn);
+  };
 
-function addBookToLibrary(title, author, pages, read) {
-  // add new book to the library and call create card
-  const newBook = new Book(title, author, pages, read);
-  myLibrary.push(newBook);
-  createBookCard(newBook);
+  this.addBookToLibrary = () => {
+    // add new book to the library and call create card
+    myLibrary.push(this);
+    this.createCard();
+  };
 }
 
 // Add new book function
@@ -92,7 +91,12 @@ addBtn.addEventListener(
       form.pages.value = "";
       const result = myLibrary.filter((check) => check.title === newTitle);
       if (result.length === 0) {
-        addBookToLibrary(newTitle, newAuthor, newPages, true);
+        const newBook = new Book();
+        newBook.title = newTitle;
+        newBook.author = newAuthor;
+        newBook.pages = newPages;
+        newBook.read = true;
+        newBook.addBookToLibrary();
       } else {
         alert("Book already in the library");
       }
@@ -103,5 +107,11 @@ addBtn.addEventListener(
 
 // Create cards for books already in the library
 myLibrary.forEach((book) => {
-  createBookCard(book);
+  const newBook = new Book(book);
+  newBook.title = book.title;
+  newBook.author = book.author;
+  newBook.pages = book.pages;
+  newBook.read = book.read;
+  newBook.createCard();
+  console.log(newBook);
 });

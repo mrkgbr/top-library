@@ -12,5 +12,6 @@
 *.vsix
 
 node_modules/
+archive/
 # .eslintrc.json
 package-lock.json
