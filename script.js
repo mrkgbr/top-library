@@ -4,25 +4,25 @@ const myLibrary = [
     title: "The Da Vinci Code",
     author: "Brown, Dan",
     pages: 300,
-    read: false,
+    read: "No",
   },
   {
     title: "The Da Vinci Code 2",
     author: "Brown, Dan",
     pages: 400,
-    read: true,
+    read: "Yes",
   },
   {
     title: "The Da Vinci Code 3",
     author: "Brown, Dan",
     pages: 500,
-    read: false,
+    read: "No",
   },
   {
     title: "The Da Vinci Code 4",
     author: "Brown, Dan",
     pages: 600,
-    read: true,
+    read: "Yes",
   },
 ];
 
@@ -36,6 +36,7 @@ function Book() {
 
 Book.prototype.createCard = function () {
   // create book card
+  // elements
   const container = document.querySelector("#container");
   const card = document.createElement("div");
   const title = document.createElement("h1");
@@ -43,12 +44,14 @@ Book.prototype.createCard = function () {
   const pages = document.createElement("p");
   const read = document.createElement("p");
   const delBtn = document.createElement("button");
-  card.classList.add("card");
+  // contents
   title.textContent = this.title;
   author.textContent = this.author;
   pages.textContent = this.pages;
   read.textContent = this.read;
   delBtn.textContent = "Delete";
+  // properties
+  card.classList.add("card");
   delBtn.setAttribute("type", "button");
   delBtn.addEventListener("click", () => {
     // add delete on click
@@ -56,6 +59,7 @@ Book.prototype.createCard = function () {
     myLibrary.splice(index, 1);
     card.remove();
   });
+  // append
   container.appendChild(card);
   card.appendChild(title);
   card.appendChild(author);
@@ -82,6 +86,7 @@ addBtn.addEventListener(
     const newTitle = form.title.value;
     const newAuthor = form.author.value;
     const newPages = form.pages.value;
+    const newRead = form.read.value;
     if (!newTitle || !newAuthor || !newPages) {
       alert("Fill all fields please");
     } else {
@@ -94,7 +99,7 @@ addBtn.addEventListener(
         newBook.title = newTitle;
         newBook.author = newAuthor;
         newBook.pages = newPages;
-        newBook.read = true;
+        newBook.read = newRead;
         newBook.addBookToLibrary();
       } else {
         alert("Book already in the library");
