@@ -1,27 +1,27 @@
 // dummy content for testing
 const myLibrary = [
   {
-    title: "The Da Vinci Code",
-    author: "Brown, Dan",
-    pages: 300,
+    title: "A Tale of Two Cities",
+    author: "Charles Dickens",
+    pages: 304,
     read: "No",
   },
   {
-    title: "The Da Vinci Code 2",
-    author: "Brown, Dan",
-    pages: 400,
+    title: "The Little Prince",
+    author: "Antoine de Saint-Exupéry",
+    pages: 96,
     read: "Yes",
   },
   {
-    title: "The Da Vinci Code 3",
-    author: "Brown, Dan",
-    pages: 500,
+    title: "Harry Potter and the Philosopher's Stone",
+    author: "J. K. Rowling",
+    pages: 223,
     read: "No",
   },
   {
-    title: "The Da Vinci Code 4",
-    author: "Brown, Dan",
-    pages: 600,
+    title: "And Then There Were None",
+    author: "Agatha Christie",
+    pages: 272,
     read: "Yes",
   },
 ];
@@ -40,11 +40,19 @@ Book.prototype.createCard = function () {
   const container = document.querySelector("#container");
   const card = document.createElement("div");
   const title = document.createElement("h1");
-  const author = document.createElement("h2");
+  const author = document.createElement("h1");
   const pages = document.createElement("p");
   const read = document.createElement("p");
   const delBtn = document.createElement("button");
+  const titleLabel = document.createElement("h2");
+  const authorLabel = document.createElement("h2");
+  const pagesLabel = document.createElement("h2");
+  const readLabel = document.createElement("h2");
   // contents
+  titleLabel.textContent = "Book title:";
+  authorLabel.textContent = "Author:";
+  pagesLabel.textContent = "Number of pages:";
+  readLabel.textContent = "Have you read it?";
   title.textContent = this.title;
   author.textContent = this.author;
   pages.textContent = this.pages;
@@ -61,9 +69,13 @@ Book.prototype.createCard = function () {
   });
   // append
   container.appendChild(card);
+  card.appendChild(titleLabel);
   card.appendChild(title);
+  card.appendChild(authorLabel);
   card.appendChild(author);
+  card.appendChild(pagesLabel);
   card.appendChild(pages);
+  card.appendChild(readLabel);
   card.appendChild(read);
   card.appendChild(delBtn);
 };

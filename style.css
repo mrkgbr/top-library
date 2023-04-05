@@ -12,18 +12,31 @@ body {
   min-height: 100%;
   padding: 50px;
   display: flex;
-  gap: 10px;
+  gap: 50px;
   background-color: rgba(255, 228, 196, 0.493);
 }
 
 form {
   display: flex;
   flex-direction: column;
+  gap: 5px;
   padding: 20px;
 }
 
-form button {
-  margin-top: 20px;
+form label {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 1.3rem;
+}
+h2 {
+  font-size: 1.1rem;
+}
+
+input {
+  padding: 3px;
 }
 
 #container {
@@ -35,9 +48,23 @@ form button {
   align-content: baseline;
 }
 
+#add {
+  margin-top: 20px;
+  width: 100px;
+  height: 2rem;
+  align-self: center;
+  background-color: green;
+  color: white;
+}
+
 .sidebar {
   min-width: 300px;
   border: solid 1px;
+  height: 400px;
+  padding: 20px;
+  background-color: rgba(169, 169, 169, 0.386);
+  border-radius: 20px;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.7);
 }
 
 .card {
@@ -45,9 +72,9 @@ form button {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  height: 200px;
+  height: 300px;
   width: 300px;
   background-color: white;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.7);
@@ -55,4 +82,18 @@ form button {
 
 .card h1 {
   text-align: center;
+}
+
+.card h2 {
+  align-self: start;
+  color: rgba(27, 27, 27, 0.635);
+}
+
+.card button {
+  align-self: flex-end;
+  margin-right: 10px;
+  background-color: red;
+  color: white;
+  width: 60px;
+  height: 1.5rem;
 }
