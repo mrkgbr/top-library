@@ -93,29 +93,28 @@ addBtn.addEventListener(
   (e) => {
     // get data from form, empty the form fields
     // check title in library and calls add book function if does not exist
-    e.preventDefault();
-    const form = document.getElementById("form");
-    const newTitle = form.title.value;
-    const newAuthor = form.author.value;
-    const newPages = form.pages.value;
-    const newRead = form.read.value;
+    const formData = document.getElementById("form");
+    const newTitle = formData.title.value;
+    const newAuthor = formData.author.value;
+    const newPages = formData.pages.value;
+    const newRead = formData.read.value;
     if (!newTitle || !newAuthor || !newPages) {
-      alert("Fill all fields please");
+      return;
+    }
+    e.preventDefault();
+    const result = myLibrary.filter((check) => check.title === newTitle);
+    if (result.length === 0) {
+      formData.title.value = "";
+      formData.author.value = "";
+      formData.pages.value = "";
+      const newBook = new Book();
+      newBook.title = newTitle;
+      newBook.author = newAuthor;
+      newBook.pages = newPages;
+      newBook.read = newRead;
+      newBook.addBookToLibrary();
     } else {
-      const result = myLibrary.filter((check) => check.title === newTitle);
-      if (result.length === 0) {
-        form.title.value = "";
-        form.author.value = "";
-        form.pages.value = "";
-        const newBook = new Book();
-        newBook.title = newTitle;
-        newBook.author = newAuthor;
-        newBook.pages = newPages;
-        newBook.read = newRead;
-        newBook.addBookToLibrary();
-      } else {
-        alert("Book already in the library");
-      }
+      alert("Book already in the library");
     }
   },
   false
