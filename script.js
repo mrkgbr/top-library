@@ -67,6 +67,7 @@ Book.prototype.createCard = function () {
   readCheckbox.setAttribute("type", "checkbox");
   if (this.read === "Yes") {
     readCheckbox.checked = true;
+    card.classList.add("checked");
   }
 
   delBtn.addEventListener("click", () => {
@@ -79,8 +80,10 @@ Book.prototype.createCard = function () {
   readCheckbox.addEventListener("change", () => {
     if (readCheckbox.checked) {
       this.read = "Yes";
+      card.classList.toggle("checked");
     } else {
       this.read = "No";
+      card.classList.toggle("checked");
     }
   });
 
