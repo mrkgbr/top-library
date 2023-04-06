@@ -42,7 +42,6 @@ Book.prototype.createCard = function () {
   const title = document.createElement("h1");
   const author = document.createElement("h1");
   const pages = document.createElement("p");
-  const read = document.createElement("p");
   const readCheckbox = document.createElement("input");
   const delBtn = document.createElement("button");
   const titleLabel = document.createElement("h2");
@@ -96,7 +95,6 @@ Book.prototype.createCard = function () {
   card.appendChild(pagesLabel);
   card.appendChild(pages);
   card.appendChild(readLabel);
-  // card.appendChild(read);
   card.appendChild(readCheckbox);
   card.appendChild(delBtn);
 };
