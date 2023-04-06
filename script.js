@@ -91,7 +91,7 @@ Book.prototype.createCard = function () {
         return i;
       }
     }
-    return -1;
+    return false;
   };
 
   // delete function
@@ -114,8 +114,6 @@ Book.prototype.createCard = function () {
       card.classList.toggle("checked");
     }
   });
-
-  // append
 };
 
 Book.prototype.addBookToLibrary = function () {
