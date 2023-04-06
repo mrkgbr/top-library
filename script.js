@@ -39,29 +39,45 @@ Book.prototype.createCard = function () {
   // elements
   const container = document.querySelector("#container");
   const card = document.createElement("div");
-  const title = document.createElement("h1");
-  const author = document.createElement("h1");
-  const pages = document.createElement("p");
-  const readCheckbox = document.createElement("input");
-  const delBtn = document.createElement("button");
-  const titleLabel = document.createElement("h2");
-  const authorLabel = document.createElement("h2");
-  const pagesLabel = document.createElement("h2");
-  const readLabel = document.createElement("h2");
-
-  // contents
-  titleLabel.textContent = "Book title:";
-  authorLabel.textContent = "Author:";
-  pagesLabel.textContent = "Number of pages:";
-  readLabel.textContent = "Have you read it?";
-  title.textContent = this.title;
-  author.textContent = this.author;
-  pages.textContent = this.pages;
-  delBtn.textContent = "Delete";
-
-  // properties
+  container.appendChild(card);
   card.classList.add("card");
+
+  const titleLabel = document.createElement("h2");
+  titleLabel.textContent = "Book title:";
+  card.appendChild(titleLabel);
+
+  const title = document.createElement("h1");
+  title.textContent = this.title;
+  card.appendChild(title);
+
+  const authorLabel = document.createElement("h2");
+  authorLabel.textContent = "Author:";
+  card.appendChild(authorLabel);
+
+  const author = document.createElement("h1");
+  author.textContent = this.author;
+  card.appendChild(author);
+
+  const pagesLabel = document.createElement("h2");
+  pagesLabel.textContent = "Number of pages:";
+  card.appendChild(pagesLabel);
+
+  const pages = document.createElement("p");
+  pages.textContent = this.pages;
+  card.appendChild(pages);
+
+  const readLabel = document.createElement("h2");
+  readLabel.textContent = "Have you read it?";
+  card.appendChild(readLabel);
+
+  const readCheckbox = document.createElement("input");
+  card.appendChild(readCheckbox);
+
+  const delBtn = document.createElement("button");
   delBtn.setAttribute("type", "button");
+  delBtn.textContent = "Delete";
+  card.appendChild(delBtn);
+
   readCheckbox.setAttribute("type", "checkbox");
   if (this.read === "Yes") {
     readCheckbox.checked = true;
@@ -100,16 +116,6 @@ Book.prototype.createCard = function () {
   });
 
   // append
-  container.appendChild(card);
-  card.appendChild(titleLabel);
-  card.appendChild(title);
-  card.appendChild(authorLabel);
-  card.appendChild(author);
-  card.appendChild(pagesLabel);
-  card.appendChild(pages);
-  card.appendChild(readLabel);
-  card.appendChild(readCheckbox);
-  card.appendChild(delBtn);
 };
 
 Book.prototype.addBookToLibrary = function () {
