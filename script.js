@@ -57,7 +57,6 @@ Book.prototype.createCard = function () {
   title.textContent = this.title;
   author.textContent = this.author;
   pages.textContent = this.pages;
-  read.textContent = this.read;
   delBtn.textContent = "Delete";
 
   // properties
@@ -69,19 +68,33 @@ Book.prototype.createCard = function () {
     card.classList.add("checked");
   }
 
+  // searching for index by title
+  const checkIndex = () => {
+    for (let i = 0; i < myLibrary.length; i += 1) {
+      if (myLibrary[i].title === this.title) {
+        return i;
+      }
+    }
+    return -1;
+  };
+
+  // delete function
   delBtn.addEventListener("click", () => {
     // add delete on click
-    const index = myLibrary.indexOf(this);
+    const index = checkIndex();
     myLibrary.splice(index, 1);
+    console.log(index);
     card.remove();
   });
 
+  // read switch function
   readCheckbox.addEventListener("change", () => {
+    const index = checkIndex();
     if (readCheckbox.checked) {
-      this.read = "Yes";
+      myLibrary[index].read = "Yes";
       card.classList.toggle("checked");
     } else {
-      this.read = "No";
+      myLibrary[index].read = "No";
       card.classList.toggle("checked");
     }
   });
