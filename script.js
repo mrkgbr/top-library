@@ -43,11 +43,13 @@ Book.prototype.createCard = function () {
   const author = document.createElement("h1");
   const pages = document.createElement("p");
   const read = document.createElement("p");
+  const readCheckbox = document.createElement("input");
   const delBtn = document.createElement("button");
   const titleLabel = document.createElement("h2");
   const authorLabel = document.createElement("h2");
   const pagesLabel = document.createElement("h2");
   const readLabel = document.createElement("h2");
+
   // contents
   titleLabel.textContent = "Book title:";
   authorLabel.textContent = "Author:";
@@ -58,15 +60,30 @@ Book.prototype.createCard = function () {
   pages.textContent = this.pages;
   read.textContent = this.read;
   delBtn.textContent = "Delete";
+
   // properties
   card.classList.add("card");
   delBtn.setAttribute("type", "button");
+  readCheckbox.setAttribute("type", "checkbox");
+  if (this.read === "Yes") {
+    readCheckbox.checked = true;
+  }
+
   delBtn.addEventListener("click", () => {
     // add delete on click
     const index = myLibrary.indexOf(this);
     myLibrary.splice(index, 1);
     card.remove();
   });
+
+  readCheckbox.addEventListener("change", () => {
+    if (readCheckbox.checked) {
+      this.read = "Yes";
+    } else {
+      this.read = "No";
+    }
+  });
+
   // append
   container.appendChild(card);
   card.appendChild(titleLabel);
@@ -76,7 +93,8 @@ Book.prototype.createCard = function () {
   card.appendChild(pagesLabel);
   card.appendChild(pages);
   card.appendChild(readLabel);
-  card.appendChild(read);
+  // card.appendChild(read);
+  card.appendChild(readCheckbox);
   card.appendChild(delBtn);
 };
 
