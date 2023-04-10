@@ -116,6 +116,7 @@ class Book {
       }
     });
   }
+
   addBookToLibrary() {
     // add new book to the library and call create card
     myLibrary.push(this);
