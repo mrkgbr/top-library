@@ -26,12 +26,14 @@ const myLibrary = [
   },
 ];
 
-function Book() {
+class Book {
   // the constructor...
-  this.title = undefined;
-  this.author = undefined;
-  this.pages = undefined;
-  this.read = undefined;
+  constructor() {
+    this.title = undefined;
+    this.author = undefined;
+    this.pages = undefined;
+    this.read = undefined;
+  }
 }
 
 Book.prototype.createCard = function () {
