@@ -34,95 +34,94 @@ class Book {
     this.pages = undefined;
     this.read = undefined;
   }
-}
 
-Book.prototype.createCard = function () {
-  // create book card
-  // elements
-  const container = document.querySelector("#container");
-  const card = document.createElement("div");
-  container.appendChild(card);
-  card.classList.add("card");
+  createCard() {
+    // create book card
+    // elements
+    const container = document.querySelector("#container");
+    const card = document.createElement("div");
+    container.appendChild(card);
+    card.classList.add("card");
 
-  const titleLabel = document.createElement("h2");
-  titleLabel.textContent = "Book title:";
-  card.appendChild(titleLabel);
+    const titleLabel = document.createElement("h2");
+    titleLabel.textContent = "Book title:";
+    card.appendChild(titleLabel);
 
-  const title = document.createElement("h1");
-  title.textContent = this.title;
-  card.appendChild(title);
+    const title = document.createElement("h1");
+    title.textContent = this.title;
+    card.appendChild(title);
 
-  const authorLabel = document.createElement("h2");
-  authorLabel.textContent = "Author:";
-  card.appendChild(authorLabel);
+    const authorLabel = document.createElement("h2");
+    authorLabel.textContent = "Author:";
+    card.appendChild(authorLabel);
 
-  const author = document.createElement("h1");
-  author.textContent = this.author;
-  card.appendChild(author);
+    const author = document.createElement("h1");
+    author.textContent = this.author;
+    card.appendChild(author);
 
-  const pagesLabel = document.createElement("h2");
-  pagesLabel.textContent = "Number of pages:";
-  card.appendChild(pagesLabel);
+    const pagesLabel = document.createElement("h2");
+    pagesLabel.textContent = "Number of pages:";
+    card.appendChild(pagesLabel);
 
-  const pages = document.createElement("p");
-  pages.textContent = this.pages;
-  card.appendChild(pages);
+    const pages = document.createElement("p");
+    pages.textContent = this.pages;
+    card.appendChild(pages);
 
-  const readLabel = document.createElement("h2");
-  readLabel.textContent = "Have you read it?";
-  card.appendChild(readLabel);
+    const readLabel = document.createElement("h2");
+    readLabel.textContent = "Have you read it?";
+    card.appendChild(readLabel);
 
-  const readCheckbox = document.createElement("input");
-  card.appendChild(readCheckbox);
+    const readCheckbox = document.createElement("input");
+    card.appendChild(readCheckbox);
 
-  const delBtn = document.createElement("button");
-  delBtn.setAttribute("type", "button");
-  delBtn.textContent = "Delete";
-  card.appendChild(delBtn);
+    const delBtn = document.createElement("button");
+    delBtn.setAttribute("type", "button");
+    delBtn.textContent = "Delete";
+    card.appendChild(delBtn);
 
-  readCheckbox.setAttribute("type", "checkbox");
-  if (this.read === "Yes") {
-    readCheckbox.checked = true;
-    card.classList.add("checked");
-  }
+    readCheckbox.setAttribute("type", "checkbox");
+    if (this.read === "Yes") {
+      readCheckbox.checked = true;
+      card.classList.add("checked");
+    }
 
-  // searching for index by title
-  const checkIndex = () => {
-    for (let i = 0; i < myLibrary.length; i += 1) {
-      if (myLibrary[i].title === this.title) {
-        return i;
+    // searching for index by title
+    const checkIndex = () => {
+      for (let i = 0; i < myLibrary.length; i += 1) {
+        if (myLibrary[i].title === this.title) {
+          return i;
+        }
       }
-    }
-    return false;
-  };
+      return false;
+    };
 
-  // delete function
-  delBtn.addEventListener("click", () => {
-    // add delete on click
-    const index = checkIndex();
-    myLibrary.splice(index, 1);
-    console.log(index);
-    card.remove();
-  });
+    // delete function
+    delBtn.addEventListener("click", () => {
+      // add delete on click
+      const index = checkIndex();
+      myLibrary.splice(index, 1);
+      console.log(index);
+      card.remove();
+    });
 
-  // read switch function
-  readCheckbox.addEventListener("change", () => {
-    const index = checkIndex();
-    if (readCheckbox.checked) {
-      myLibrary[index].read = "Yes";
-      card.classList.toggle("checked");
-    } else {
-      myLibrary[index].read = "No";
-      card.classList.toggle("checked");
-    }
-  });
-};
-
-Book.prototype.addBookToLibrary = function () {
-  // add new book to the library and call create card
-  myLibrary.push(this);
-  this.createCard();
-};
+    // read switch function
+    readCheckbox.addEventListener("change", () => {
+      const index = checkIndex();
+      if (readCheckbox.checked) {
+        myLibrary[index].read = "Yes";
+        card.classList.toggle("checked");
+      } else {
+        myLibrary[index].read = "No";
+        card.classList.toggle("checked");
+      }
+    });
+  }
+  addBookToLibrary() {
+    // add new book to the library and call create card
+    myLibrary.push(this);
+    this.createCard();
+  }
+}
 
 // Add new book function
 const addBtn = document.getElementById("add");
