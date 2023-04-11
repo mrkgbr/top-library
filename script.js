@@ -28,11 +28,12 @@ const myLibrary = [
 
 class Book {
   // the constructor...
-  constructor() {
-    this.title = undefined;
-    this.author = undefined;
-    this.pages = undefined;
-    this.read = undefined;
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+    this.createCard();
   }
 
   createCard() {
@@ -100,7 +101,6 @@ class Book {
       // add delete on click
       const index = checkIndex();
       myLibrary.splice(index, 1);
-      console.log(index);
       card.remove();
     });
 
@@ -115,12 +115,6 @@ class Book {
         card.classList.toggle("checked");
       }
     });
-  }
-
-  addBookToLibrary() {
-    // add new book to the library and call create card
-    myLibrary.push(this);
-    this.createCard();
   }
 }
 
@@ -145,12 +139,8 @@ addBtn.addEventListener(
       formData.title.value = "";
       formData.author.value = "";
       formData.pages.value = "";
-      const newBook = new Book();
-      newBook.title = newTitle;
-      newBook.author = newAuthor;
-      newBook.pages = newPages;
-      newBook.read = newRead;
-      newBook.addBookToLibrary();
+      const newBook = new Book(newTitle, newAuthor, newPages, newRead);
+      myLibrary.push(newBook);
     } else {
       alert("Book already in the library");
     }
@@ -160,10 +150,5 @@ addBtn.addEventListener(
 
 // Create cards for books already in the library on page load
 myLibrary.forEach((book) => {
-  const newBook = new Book(book);
-  newBook.title = book.title;
-  newBook.author = book.author;
-  newBook.pages = book.pages;
-  newBook.read = book.read;
-  newBook.createCard();
+  (() => new Book(book.title, book.author, book.pages, book.read))();
 });
